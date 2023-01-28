@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+// import "./App.css";
 import { dummyData } from "./dummyData";
 import axios from "axios";
 import Nasa from "./nasa/Nasa";
+import styled from "styled-components";
 
+const SCDiv = styled.div`
+text-align: center;
+width: 800px;
+background-color: #dae4e7;
+margin: 0 auto;
+`;
 
 function App() {
   const [data, setData] = useState(dummyData);
-  const [date, setDate] = useState("2022-01-01");
+  const [date, setDate] = useState("1999-01-01");
 
   useEffect(() => {
     axios
@@ -25,16 +32,15 @@ function App() {
     let newdate = new Date(date);
     newdate.setDate(newdate.getDate() + days);
 
-    let gercekTarih = `${newdate.getFullYear()}-${newdate.getMonth()+1}-${
-      newdate.getDate()
-    }`;
+    let gercekTarih = `${newdate.getFullYear()}-${newdate.getMonth() +
+      1}-${newdate.getDate()}`;
     setDate(gercekTarih);
   }
 
   return (
-    <div className="App">
-      <Nasa data={data} changeDate={changeDate}/>
-    </div>
+    <SCDiv className="App">
+      <Nasa data={data} changeDate={changeDate} />
+    </SCDiv>
   );
 }
 
